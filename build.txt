@@ -1,0 +1,3 @@
+displayName = Community Modjam Mod
+author = The devs
+version = 0.1
