@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ModJam.NPCs.Enemies
+namespace CommunityModJam.NPCs.Enemies
 {
     class SnowEye : ModNPC
     {
