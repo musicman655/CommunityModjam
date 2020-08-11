@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ModJam.Projectiles
+namespace CommunityModJam.Projectiles
 {
     class SnowEyeProj : ModProjectile
     {
