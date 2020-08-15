@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using CommunityModJam.Tiles;
 
-namespace CommunityModJam
+namespace CommunityModjam
 {
     class CommunityNPC : GlobalNPC
     {
