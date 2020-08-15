@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace CommunityModJam.Tiles
+namespace CommunityModjam.Tiles
 {
     class HellOreTile : ModTile
     {
