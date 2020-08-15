@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace CommunityModJam.Items.Placables
+namespace CommunityModjam.Items.Placables
 {
     class HellOre : ModItem
     {
