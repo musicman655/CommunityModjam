@@ -19,6 +19,8 @@ namespace CommunityModJam.MainFiles
 {
     class CommunityWorld : ModWorld
     {
+        public static bool spawnIceOre = false;
+        public static bool spawnHellOre = false;
 
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
