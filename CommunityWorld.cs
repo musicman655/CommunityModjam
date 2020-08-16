@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,57 @@ namespace CommunityModJam.MainFiles
         public static bool spawnIceOre = false;
         public static bool spawnHellOre = false;
 
-		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void Initialize()
+        {
+			spawnIceOre = false;
+			spawnHellOre = false;
+        }
+        public override TagCompound Save()
+        {
+			var Ores = new List<string>();
+			if (spawnIceOre) Ores.Add("spawnIceOre");
+			if (spawnHellOre) Ores.Add("spawnHellOre");
+			return new TagCompound
+			{
+				{
+					"Version", 0
+				},
+				{
+					"Ores", Ores
+				}
+			};
+		}
+        public override void Load(TagCompound tag)
+        {
+			var Ores = tag.GetList<string>("Ores");
+			spawnIceOre = Ores.Contains("spawnIceOre");
+			spawnHellOre = Ores.Contains("spawnHellOre");
+        }
+        public override void LoadLegacy(BinaryReader reader)
+        {
+			int loadVersion = reader.ReadInt32();
+			if(loadVersion == 0)
+            {
+				BitsByte flags = reader.ReadByte();
+				spawnIceOre = flags[0];
+				spawnHellOre = flags[1];
+            }
+        }
+        public override void NetSend(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = spawnIceOre;
+            flags[1] = spawnHellOre;
+
+            writer.Write(flags);
+        }
+        public override void NetReceive(BinaryReader reader)
+        {
+			BitsByte flags = reader.ReadByte();
+			spawnIceOre = flags[0];
+			spawnHellOre = flags[1];
+        }
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
 
             
