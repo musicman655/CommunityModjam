@@ -1,43 +1,36 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
+using Microsoft.Xna.Framework;
+using System.IO;
 using static Terraria.ModLoader.ModContent;
+using Terraria.Audio;
 
 namespace CommunityModjam.Hell.NPCs
 {
-	public class HellMimic : ModNPC
+	class HellMimic : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hell Mimic");
-			NPCID.Sets.MustAlwaysDraw[npc.type] = true;
-			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.BigMimicCorruption];
+			Main.npcFrameCount[npc.type] = Main.npcFrameCount[475];
 		}
-
 		public override void SetDefaults()
 		{
-			npc.width = 28;
-			npc.height = 44;
-			npc.aiStyle = 87;
-			npc.damage = 90;
-			npc.defense = 34;
-			npc.lifeMax = 3500;
-			npc.HitSound = SoundID.NPCHit4;
-			npc.DeathSound = SoundID.NPCDeath6;
-			npc.value = 30000f;
-			npc.knockBackResist = 0.1f;
-			npc.buffImmune[20] = true;
-			npc.buffImmune[24] = true;
-			npc.buffImmune[39] = true;
-			npc.rarity = 5;
+			npc.CloneDefaults(475);
+			aiType = 475;
+			animationType = 475;
 		}
-		public override void AI()
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			//npc.CloneDefaults(NPCID.BigMimicJungle);
+			if (spawnInfo.player.ZoneUnderworldHeight && Main.hardMode && !NPC.AnyNPCs(NPCType<HellMimic>()))
+			{
+				return .0075f;
+			}
+			else
+			{ 
+				return 0f;
+			}
+				
 		}
 	}
 }
-
-//Let the hell begin
